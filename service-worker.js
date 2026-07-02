@@ -1,10 +1,11 @@
 ﻿const CACHE_NAME = "order-app-cache-v1";
 const urlsToCache = [
-  "/",
-  "/index.html",
-  "/manifest.json",
-  "/icon.png"
+  "/order-pwa/",
+  "/order-pwa/index.html",
+  "/order-pwa/manifest.json",
+  "/order-pwa/icon.png"
 ];
+
 
 // 安裝時快取檔案
 self.addEventListener("install", (event) => {
