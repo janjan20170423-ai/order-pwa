@@ -12,7 +12,7 @@
 
   <!-- 安裝按鈕 -->
   <button id="installBtn" style="display:none;">📲 安裝到桌面</button>
-
+<button id="installBtn" style="display:none;">📲 安裝到桌面</button>
   <script>
     // 註冊 Service Worker
     if ("serviceWorker" in navigator) {
@@ -39,6 +39,25 @@
         deferredPrompt = null;
       }
     });
+
+    
+      let deferredPrompt;
+  const installBtn = document.getElementById("installBtn");
+
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = "inline-block"; // 顯示安裝按鈕
+  });
+
+  installBtn.addEventListener("click", async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(outcome === "accepted" ? "使用者接受安裝" : "使用者拒絕安裝");
+      deferredPrompt = null;
+    }
+  });
   </script>
 </body>
 </html>
